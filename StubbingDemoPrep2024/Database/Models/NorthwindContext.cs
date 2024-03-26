@@ -13,10 +13,6 @@ public partial class NorthwindContext : DbContext
     public NorthwindContext(DbContextOptions<NorthwindContext> options)
         : base(options)
     {
-        if (!optionsBuilder.IsConfigured)
-        {
-            optionsBuilder.UseSqlServer("Name=ConnectionStrings:Northwind");
-        }
     }
 
     public virtual DbSet<AlphabeticalListOfProduct> AlphabeticalListOfProducts { get; set; }
@@ -80,7 +76,14 @@ public partial class NorthwindContext : DbContext
     public virtual DbSet<VRandNumber> VRandNumbers { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Name=Northwind");
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseSqlServer("Name=Northwind");
+        }
+
+    }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
