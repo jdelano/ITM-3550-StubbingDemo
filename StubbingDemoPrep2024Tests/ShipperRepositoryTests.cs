@@ -18,6 +18,16 @@ public class ShipperRepositoryTests
         var dBContextOptions = new DbContextOptionsBuilder<NorthwindContext>()
             .UseInMemoryDatabase("Northwind").Options;
         _context = new NorthwindContext_Stub(dBContextOptions);
+
+        // Clear out the database before every test
+        _context.Database.EnsureDeleted();
+
+        // Add data to the database
+        var shipper = new Shipper() { ShipperId = 1, CompanyName = "Shipper", Phone = "111-2222" };
+        _context.Shippers.Add(shipper);
+        _context.SaveChanges();
+
+        // Instantiate repository
         _repository = new ShipperRepository(_context);
     }
 
