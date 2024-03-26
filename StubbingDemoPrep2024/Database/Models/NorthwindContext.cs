@@ -13,6 +13,10 @@ public partial class NorthwindContext : DbContext
     public NorthwindContext(DbContextOptions<NorthwindContext> options)
         : base(options)
     {
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseSqlServer("Name=ConnectionStrings:Northwind");
+        }
     }
 
     public virtual DbSet<AlphabeticalListOfProduct> AlphabeticalListOfProducts { get; set; }
