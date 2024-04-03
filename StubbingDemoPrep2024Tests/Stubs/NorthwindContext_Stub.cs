@@ -8,7 +8,7 @@ public class NorthwindContext_Stub : NorthwindContext
 {
 	public bool CauseError { get; set; } = false;
 
-    // Need to ensure that if we have configured the database for InMemory, we don't also configure it for SQL Server.
+    // Need to ensure that if we have configured the database for InMemory
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
 		optionsBuilder.UseInMemoryDatabase("Northwind");
@@ -37,6 +37,5 @@ public class NorthwindContext_Stub : NorthwindContext
             return base.SaveChangesAsync(cancellationToken);
         }
     }
-
 }
 
