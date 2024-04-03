@@ -8,12 +8,13 @@ public class NorthwindContext_Stub : NorthwindContext
 {
 	public bool CauseError { get; set; } = false;
 
-	public NorthwindContext_Stub(DbContextOptions<NorthwindContext> options)
-		: base(options)
-	{
-	}
+    // Need to ensure that if we have configured the database for InMemory, we don't also configure it for SQL Server.
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+		optionsBuilder.UseInMemoryDatabase("Northwind");
+    }
 
-	public override int SaveChanges()
+    public override int SaveChanges()
 	{
 		if (CauseError)
 		{
@@ -24,5 +25,18 @@ public class NorthwindContext_Stub : NorthwindContext
 			return base.SaveChanges();
 		}
 	}
+
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        if (CauseError)
+        {
+            throw new Exception();
+        }
+        else
+        {
+            return base.SaveChangesAsync(cancellationToken);
+        }
+    }
+
 }
 

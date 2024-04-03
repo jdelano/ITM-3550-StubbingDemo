@@ -12,7 +12,7 @@ public class ShipperRepository
         _context = context;
     }
 
-    public void CreateShipper(int shipperId, string companyName, string phone)
+    public async Task CreateShipper(int shipperId, string companyName, string phone)
     {
         var shipper = new Shipper()
         {
@@ -23,8 +23,8 @@ public class ShipperRepository
 
         try
         {
-            _context.Shippers.Add(shipper);
-            _context.SaveChanges();
+            await _context.Shippers.AddAsync(shipper);
+            await _context.SaveChangesAsync();
         }
         catch (Exception exception)
         {
@@ -32,6 +32,19 @@ public class ShipperRepository
             throw new CouldNotAddToDatabaseException(exception.Message, exception);
         }
 
+    }
+
+    public async Task<Shipper> GetShipperByIdAsync(int shipperId)
+    {
+        var shipper = await _context.Shippers.FindAsync(shipperId);
+        if (shipper is null)
+        {
+            throw new ArgumentException();
+        }
+        else
+        {
+            return shipper;
+        }
     }
 }
 

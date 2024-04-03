@@ -225,3 +225,6 @@
 /Users/jdelano/Projects/StubbingDemoPrep2024/StubbingDemoPrep2024Tests/obj/Debug/net8.0/StubbingDemoPrep2024Tests.pdb
 /Users/jdelano/Projects/StubbingDemoPrep2024/StubbingDemoPrep2024Tests/obj/Debug/net8.0/StubbingDemoPrep2024Tests.genruntimeconfig.cache
 /Users/jdelano/Projects/StubbingDemoPrep2024/StubbingDemoPrep2024Tests/obj/Debug/net8.0/ref/StubbingDemoPrep2024Tests.dll
+/Users/jdelano/Projects/StubbingDemoPrep2024/StubbingDemoPrep2024Tests/obj/Debug/net8.0/StubbingDemoPrep2024Tests.sourcelink.json
+/Users/jdelano/Projects/StubbingDemoPrep2024/StubbingDemoPrep2024Tests/bin/Debug/net8.0/Castle.Core.dll
+/Users/jdelano/Projects/StubbingDemoPrep2024/StubbingDemoPrep2024Tests/bin/Debug/net8.0/Moq.dll

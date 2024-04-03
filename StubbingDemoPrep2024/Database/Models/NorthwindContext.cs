@@ -76,15 +76,9 @@ public partial class NorthwindContext : DbContext
     public virtual DbSet<VRandNumber> VRandNumbers { get; set; }
 
 
-    // Need to ensure that if we have configured the database for InMemory, we don't also configure it for SQL Server.
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (!optionsBuilder.IsConfigured)
-        {
-            optionsBuilder.UseSqlServer("Name=Northwind");
-        }
-    }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    => optionsBuilder.UseSqlServer("Name=Northwind");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
