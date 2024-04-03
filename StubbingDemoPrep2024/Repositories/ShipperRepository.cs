@@ -12,7 +12,7 @@ public class ShipperRepository
         _context = context;
     }
 
-    public async Task CreateShipper(int shipperId, string companyName, string phone)
+    public virtual async Task CreateShipperAsync(int shipperId, string companyName, string phone)
     {
         var shipper = new Shipper()
         {
@@ -34,17 +34,9 @@ public class ShipperRepository
 
     }
 
-    public async Task<Shipper> GetShipperByIdAsync(int shipperId)
+    public virtual async Task<Shipper?> GetShipperByIdAsync(int shipperId)
     {
-        var shipper = await _context.Shippers.FindAsync(shipperId);
-        if (shipper is null)
-        {
-            throw new ArgumentException();
-        }
-        else
-        {
-            return shipper;
-        }
+        return await _context.Shippers.FindAsync(shipperId);
     }
 }
 

@@ -35,7 +35,7 @@ public class ShipperRepositoryTests
     public async Task ShipperRepository_CreateShipper_ShouldThrowCorrectExceptionOnDatabaseFailure()
     {
         _context.CauseError = true;
-        await _repository.CreateShipper(2, "Test", "111-2222");
+        await _repository.CreateShipperAsync(2, "Test", "111-2222");
     }
 
     [TestMethod]
@@ -46,20 +46,20 @@ public class ShipperRepositoryTests
         _context.Shippers.Add(shipper);
         _context.SaveChanges();
         var retrievedShipper = await _repository.GetShipperByIdAsync(1);
-        Assert.AreEqual(1, retrievedShipper.ShipperId);
-        Assert.AreEqual("Shipper", retrievedShipper.CompanyName);
-        Assert.AreEqual("111-2222", retrievedShipper.Phone);
+        Assert.AreEqual(1, retrievedShipper?.ShipperId);
+        Assert.AreEqual("Shipper", retrievedShipper?.CompanyName);
+        Assert.AreEqual("111-2222", retrievedShipper?.Phone);
     }
 
-    [ExpectedException(typeof(ArgumentException))]
     [TestMethod]
-    public async Task ShipperRepository_GetShipperByIdAsync_ShouldThrowExceptionWhenShipperIdNotFound()
+    public async Task ShipperRepository_GetShipperByIdAsync_ShouldReturnNullWhenShipperIdNotFound()
     {
         // Add data to the database
         var shipper = new Shipper() { ShipperId = 1, CompanyName = "Shipper", Phone = "111-2222" };
         _context.Shippers.Add(shipper);
         _context.SaveChanges();
         var retrievedShipper = await _repository.GetShipperByIdAsync(2);
+        Assert.IsNull(retrievedShipper);
     }
 
 }

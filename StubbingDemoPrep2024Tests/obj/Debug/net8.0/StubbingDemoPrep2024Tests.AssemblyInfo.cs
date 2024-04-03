@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StubbingDemoPrep2024Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+17291205b97a0373cd1d0e12ee01be96e0d17f3a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bb282a7e91a10b7041cb112d7d3782ebaa9e9cd2")]
 [assembly: System.Reflection.AssemblyProductAttribute("StubbingDemoPrep2024Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StubbingDemoPrep2024Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
