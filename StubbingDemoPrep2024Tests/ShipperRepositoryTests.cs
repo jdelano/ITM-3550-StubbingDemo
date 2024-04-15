@@ -62,6 +62,25 @@ public class ShipperRepositoryTests
         Assert.IsNull(retrievedShipper);
     }
 
+    [TestMethod]
+    public void GetShippers_ShouldReturnShipppers()
+    {
+        var shipperList = new List<Shipper>
+        {
+            new Shipper { ShipperId = 1, CompanyName = "Microsoft", Phone = "111-2222" },
+            new Shipper { ShipperId = 2, CompanyName = "Google", Phone = "111-3333" },
+            new Shipper { ShipperId = 3, CompanyName = "Apple", Phone = "111-4444" },
+            new Shipper { ShipperId = 4, CompanyName = "Dell", Phone = "111-5555" },
+            new Shipper { ShipperId = 5, CompanyName = "HP", Phone = "111-6666" }
+        };
+        _context.Shippers.AddRange(shipperList);
+        _context.SaveChanges();
+        var retrievedShippers = _repository.GetShippers();
+        Assert.IsNotNull(retrievedShippers);
+        Assert.AreEqual(5, retrievedShippers.Count());
+        var retrievedShippersList = retrievedShippers.ToList();
+        Assert.AreEqual("Apple", retrievedShippersList[2].CompanyName);
+    }
 }
 
 

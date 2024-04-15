@@ -80,5 +80,26 @@ public class ShipperServiceTests
 			.Verify(repo => repo.CreateShipperAsync(1, "Microsoft", "111-2222"), Times.Exactly(3));
     }
 
+	[TestMethod]
+	public void GetShippers_ShouldReturnShippers()
+	{
+		_mockShipperRepository
+			.Setup(repo => repo.GetShippers())
+			.Returns(new List<Shipper>
+		{
+			new Shipper { ShipperId = 1, CompanyName = "Microsoft", Phone = "111-2222" },
+			new Shipper { ShipperId = 2, CompanyName = "Google", Phone = "111-3333" },
+			new Shipper { ShipperId = 3, CompanyName = "Apple", Phone = "111-4444" },
+			new Shipper { ShipperId = 4, CompanyName = "Dell", Phone = "111-5555" },
+			new Shipper { ShipperId = 5, CompanyName = "HP", Phone = "111-6666" }
+		});
+        var service = new ShipperService(_mockShipperRepository.Object);
+		var result = service.GetShippers();
+		Assert.IsNotNull(result);
+		var resultList = result.ToList();
+		Assert.AreEqual(5, resultList.Count());
+		Assert.AreEqual("Apple", resultList[2].CompanyName);
+
+    }
 }
 

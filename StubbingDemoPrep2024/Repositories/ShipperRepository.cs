@@ -38,5 +38,13 @@ public class ShipperRepository
     {
         return await _context.Shippers.FindAsync(shipperId);
     }
+
+    public virtual IEnumerable<Shipper> GetShippers()
+    {
+        foreach (var shipper in _context.Shippers)
+        {
+            yield return shipper;
+        }
+    }
 }
 

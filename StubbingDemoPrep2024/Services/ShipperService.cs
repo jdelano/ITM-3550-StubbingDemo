@@ -1,7 +1,9 @@
-﻿using StubbingDemoPrep2024;
+using StubbingDemoPrep2024;
 using StubbingDemoPrep2024.Database.Models;
 using StubbingDemoPrep2024.Exceptions;
 using StubbingDemoPrep2024.Repositories;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.OpenApi;
 
 namespace StubbingDemoPrep2024.Services;
 
@@ -44,4 +46,14 @@ public class ShipperService
             return shipper;
         }
     }
+
+    public IEnumerable<Shipper> GetShippers()
+    {
+        return _repository.GetShippers();
+        //foreach (var shipper in _repository.GetShippers())
+        //{
+        //    yield return shipper;
+        //}
+    }
 }
+
